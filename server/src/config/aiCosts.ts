@@ -1,0 +1,6 @@
+export const AI_COSTS = {
+    ATS_SCORE: 2,
+    COVER_LETTER: 3,
+    INTERVIEW_PREP: 4,
+    ENHANCE_EXPERIENCE: 2
+};

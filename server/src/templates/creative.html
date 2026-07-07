@@ -1,0 +1,797 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+
+        .header-banner {
+            background: #2d3748;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .name {
+            font-size: 42px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        .job-title {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #a0aec0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .contact-bar {
+            background: #4a5568;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .contact-item {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: #2d3748;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 4px solid #4fd1c5;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 25px;
+        }
+
+        .experience-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: #4fd1c5;
+            border-radius: 50%;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .position {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .company {
+            font-size: 16px;
+            color: #4fd1c5;
+            font-weight: 600;
+        }
+
+        .date {
+            font-size: 14px;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .education-card {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-top: 4px solid #4fd1c5;
+        }
+
+        .degree {
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+
+        .school {
+            color: #4a5568;
+            font-size: 14px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill {
+            background: #2d3748;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header-banner">
+        <h1 class="name">{{personalInfo.fullName}}</h1>
+        <p class="job-title">{{personalInfo.jobTitle}}</p>
+    </header>
+
+    <div class="contact-bar">
+        {{#if personalInfo.email}}<span class="contact-item">{{personalInfo.email}}</span>{{/if}}
+        {{#if personalInfo.phone}}<span class="contact-item">{{personalInfo.phone}}</span>{{/if}}
+        {{#if personalInfo.location}}<span class="contact-item">{{personalInfo.location}}</span>{{/if}}
+    </div>
+
+    <div class="container">
+        {{#if personalInfo.summary}}
+        <section class="section" style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
+            <p>{{personalInfo.summary}}</p>
+        </section>
+        {{/if}}
+
+        {{#if experience.length}}
+        <section class="section">
+            <h2 class="section-title">Experience</h2>
+            {{#each experience}}
+            <div class="experience-item">
+                <div class="timeline-dot"></div>
+                <div class="item-header">
+                    <div class="position">{{position}}</div>
+                    <div class="date">{{startDate}} - {{endDate}}</div>
+                </div>
+                <div class="company">{{company}}</div>
+                <p>{{description}}</p>
+            </div>
+            {{/each}}
+        </section>
+        {{/if}}
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+            {{#if education.length}}
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                <div class="education-grid" style="grid-template-columns: 1fr;">
+                    {{#each education}}
+                    <div class="education-card">
+                        <div class="degree">{{degree}}</div>
+                        <div class="school">{{school}}</div>
+                        <div style="font-size: 13px; margin-top: 5px; color: #718096;">{{graduationDate}}</div>
+                    </div>
+                    {{/each}}
+                </div>
+            </section>
+            {{/if}}
+
+            {{#if skills.length}}
+            <section class="section">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-container">
+                    {{#each skills}}
+                    <span class="skill">{{this}}</span>
+                    {{/each}}
+                </div>
+            </section>
+            {{/if}}
+        </div>
+    </div>
+</body>
+
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creative Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    /* A4 page size for print */
+    @page {
+      size: A4;
+      margin: 20mm 20mm 20mm 20mm;
+    }
+
+    html,
+    body {
+      height: 297mm; /* A4 height */
+      width: 210mm; /* A4 width */
+      margin: 0;
+      padding: 0;
+      background: white;
+      font-family: 'Poppins', sans-serif;
+      color: #2d3748;
+      line-height: 1.6;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 20mm;
+      box-sizing: border-box;
+    }
+
+    .header-banner {
+      background: #2d3748;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      border-radius: 6px;
+    }
+
+    .name {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    .job-title {
+      font-size: 18px;
+      margin-top: 10px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #a0aec0;
+    }
+
+    .container {
+      max-width: 170mm; /* slightly less than full width for padding */
+      margin: 0 auto;
+    }
+
+    .contact-bar {
+      background: #4a5568;
+      color: white;
+      padding: 12px 0;
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 30px;
+      border-radius: 4px;
+    }
+
+    .contact-item {
+      display: inline-block;
+      margin: 0 12px;
+    }
+
+    .contact-item a {
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      color: #2d3748;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-bottom: 4px solid #4fd1c5;
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-bottom: 25px;
+    }
+
+    .experience-item {
+      margin-bottom: 30px;
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid #e2e8f0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background: #4fd1c5;
+      border-radius: 50%;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+
+    .position {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2d3748;
+      flex-grow: 1;
+    }
+
+    .date {
+      font-size: 14px;
+      color: #718096;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .company {
+      font-size: 16px;
+      color: #4fd1c5;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .education-card {
+      background: #f7fafc;
+      padding: 20px;
+      border-radius: 8px;
+      border-top: 4px solid #4fd1c5;
+    }
+
+    .degree {
+      font-weight: 700;
+      color: #2d3748;
+      margin-bottom: 5px;
+    }
+
+    .school {
+      color: #4a5568;
+      font-size: 14px;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      background: #2d3748;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Link styles inside content */
+    a {
+      color: #4fd1c5;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Responsive print adjustment */
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+        width: auto;
+        height: auto;
+      }
+      .container {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-banner">
+    <h1 class="name">{{personalInfo.fullName}}</h1>
+    <p class="job-title">{{personalInfo.jobTitle}}</p>
+  </header>
+
+  <div class="contact-bar">
+    {{#if personalInfo.email}}
+    <span class="contact-item"><a href="mailto:{{personalInfo.email}}">{{personalInfo.email}}</a></span>
+    {{/if}}
+    {{#if personalInfo.phone}}
+    <span class="contact-item">{{personalInfo.phone}}</span>
+    {{/if}}
+    {{#if personalInfo.location}}
+    <span class="contact-item">{{personalInfo.location}}</span>
+    {{/if}}
+    {{#if personalInfo.linkedin}}
+    <span class="contact-item"><a href="{{personalInfo.linkedin}}" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
+    {{/if}}
+    {{#if personalInfo.github}}
+    <span class="contact-item"><a href="{{personalInfo.github}}" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+    {{/if}}
+  </div>
+
+  <div class="container">
+    {{#if personalInfo.summary}}
+    <section class="section" style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
+      <p>{{personalInfo.summary}}</p>
+    </section>
+    {{/if}}
+
+    {{#if experience.length}}
+    <section class="section">
+      <h2 class="section-title">Experience</h2>
+      {{#each experience}}
+      <div class="experience-item">
+        <div class="timeline-dot"></div>
+        <div class="item-header">
+          <div class="position">{{position}}</div>
+          <div class="date">{{startDate}} - {{endDate}}</div>
+        </div>
+        <div class="company">{{company}}</div>
+        <p>{{description}}</p>
+      </div>
+      {{/each}}
+    </section>
+    {{/if}}
+
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+      <div class="education-grid">
+        {{#each education}}
+        <div class="education-card">
+          <div class="degree">{{degree}}</div>
+          <div class="school">{{school}}</div>
+          <div style="font-size: 13px; margin-top: 5px; color: #718096;">{{graduationDate}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-container">
+        {{#each skills}}
+        <span class="skill">{{this}}</span>
+        {{/each}}
+      </div>
+    </section>
+  </div>
+</body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creative Resume</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    @page {
+      size: A4;
+      margin: 20mm;
+    }
+
+    html,
+    body {
+      height: 297mm;
+      width: 210mm;
+      margin: 0;
+      padding: 0;
+      background: #f9fafb; /* very light gray-white background */
+      font-family: 'Poppins', sans-serif;
+      color: #1a202c; /* soft black/dark-gray */
+      line-height: 1.6;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 20mm;
+      box-sizing: border-box;
+    }
+
+    .header-banner {
+      background: #1a202c; /* dark, but softer black */
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      margin-bottom: 30px;
+      border-radius: 6px;
+    }
+
+    .name {
+      font-size: 42px;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    .job-title {
+      font-size: 18px;
+      margin-top: 10px;
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #a0aec0;
+    }
+
+    .container {
+      max-width: 170mm;
+      margin: 0 auto;
+    }
+
+    .contact-bar {
+      background: #2d3748; /* dark gray */
+      color: white;
+      padding: 12px 0;
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 30px;
+      border-radius: 4px;
+    }
+
+    .contact-item {
+      display: inline-block;
+      margin: 0 12px;
+    }
+
+    .contact-item a {
+      color: white;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      color: #1a202c;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-bottom: 4px solid #4fd1c5; /* teal accent */
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-bottom: 25px;
+    }
+
+    .experience-item,
+    .project-item {
+      margin-bottom: 30px;
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid #0f0f0f; /* lighter border */
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -6px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      background: #4fd1c5;
+      border-radius: 50%;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+      flex-wrap: wrap;
+    }
+
+    .position,
+    .project-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a202c;
+      flex-grow: 1;
+    }
+
+    .date {
+      font-size: 14px;
+      color: #718096;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .company {
+      font-size: 16px;
+      color: #4fd1c5;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .education-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      border-top: 4px solid #4fd1c5;
+    }
+
+    .degree {
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 5px;
+    }
+
+    .school {
+      color: #4a5568;
+      font-size: 14px;
+    }
+
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      background: #2d3748;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    a {
+      color: #4fd1c5;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header-banner">
+    <h1 class="name">{{personalInfo.fullName}}</h1>
+    <p class="job-title">{{personalInfo.jobTitle}}</p>
+  </header>
+
+  <div class="contact-bar">
+    {{#if personalInfo.email}}
+    <span class="contact-item"><a href="mailto:{{personalInfo.email}}">{{personalInfo.email}}</a></span>
+    {{/if}}
+    {{#if personalInfo.phone}}
+    <span class="contact-item">{{personalInfo.phone}}</span>
+    {{/if}}
+    {{#if personalInfo.location}}
+    <span class="contact-item">{{personalInfo.location}}</span>
+    {{/if}}
+    {{#if personalInfo.linkedin}}
+    <span class="contact-item"><a href="{{personalInfo.linkedin}}" target="_blank" rel="noopener noreferrer">LinkedIn</a></span>
+    {{/if}}
+    {{#if personalInfo.github}}
+    <span class="contact-item"><a href="{{personalInfo.github}}" target="_blank" rel="noopener noreferrer">GitHub</a></span>
+    {{/if}}
+  </div>
+
+  <div class="container">
+    {{#if personalInfo.summary}}
+    <section class="section" style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
+      <p>{{personalInfo.summary}}</p>
+    </section>
+    {{/if}}
+
+    {{#if experience.length}}
+    <section class="section">
+      <h2 class="section-title">Experience</h2>
+      {{#each experience}}
+      <div class="experience-item">
+        <div class="timeline-dot"></div>
+        <div class="item-header">
+          <div class="position">{{position}}</div>
+          <div class="date">{{startDate}} - {{endDate}}</div>
+        </div>
+        <div class="company">{{company}}</div>
+        <p>{{description}}</p>
+      </div>
+      {{/each}}
+    </section>
+    {{/if}}
+
+    {{#if projects.length}}
+    <section class="section">
+      <h2 class="section-title">Projects</h2>
+      {{#each projects}}
+      <div class="project-item">
+        <div class="timeline-dot"></div>
+        <div class="item-header">
+          <div class="project-title">{{title}}</div>
+          <div class="date">{{startDate}} - {{endDate}}</div>
+        </div>
+        <div class="company">{{role}}</div>
+        <p>{{description}}</p>
+        {{#if link}}
+        <p><a href="{{link}}" target="_blank" rel="noopener noreferrer">Project Link</a></p>
+        {{/if}}
+      </div>
+      {{/each}}
+    </section>
+    {{/if}}
+
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+      <div class="education-grid">
+        {{#each education}}
+        <div class="education-card">
+          <div class="degree">{{degree}}</div>
+          <div class="school">{{school}}</div>
+          <div style="font-size: 13px; margin-top: 5px; color: #121213;">{{graduationDate}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-container">
+        {{#each skills}}
+        <span class="skill">{{this}}</span>
+        {{/each}}
+      </div>
+    </section>
+  </div>
+</body>
+
+</html>

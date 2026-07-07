@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Resume</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+            color: #000;
+            margin: 0;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0 0 5px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 16px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 3px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .block {
+            margin-bottom: 15px;
+        }
+
+        .block-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+
+        .block-subheader {
+            font-style: italic;
+        }
+
+        .description {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .skills {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>{{personalInfo.fullName}}</h1>
+        <div class="contact-info">
+            {{personalInfo.jobTitle}} | {{personalInfo.email}} | {{personalInfo.phone}} | {{personalInfo.location}}
+        </div>
+    </div>
+
+    {{#if personalInfo.summary}}
+    <h2>Professional Summary</h2>
+    <div style="font-size: 14px;">{{personalInfo.summary}}</div>
+    {{/if}}
+
+    {{#if experience.length}}
+    <h2>Experience</h2>
+    {{#each experience}}
+    <div class="block">
+        <div class="block-header">
+            <span>{{company}}</span>
+            <span>{{startDate}} - {{endDate}}</span>
+        </div>
+        <div class="block-subheader">{{position}} | {{location}}</div>
+        <div class="description">{{description}}</div>
+    </div>
+    {{/each}}
+    {{/if}}
+
+    {{#if education.length}}
+    <h2>Education</h2>
+    {{#each education}}
+    <div class="block">
+        <div class="block-header">
+            <span>{{school}}</span>
+            <span>{{graduationDate}}</span>
+        </div>
+        <div class="block-subheader">{{degree}}</div>
+    </div>
+    {{/each}}
+    {{/if}}
+
+    {{#if skills.length}}
+    <h2>Skills</h2>
+    <div class="skills">
+        {{#each skills}}
+        {{this}}{{#unless @last}}, {{/unless}}
+        {{/each}}
+    </div>
+    {{/if}}
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+# Frontend
+client/node_modules
+client/.next
+client/.env
+client/build
+client/error.log
+
+# Backend
+server/node_modules
+server/dist
+server/.env
+server/build_error.log
+server/uploads
+
+# OS & editor files
+.DS_Store
+.vscode/
+*.log

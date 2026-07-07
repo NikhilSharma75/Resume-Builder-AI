@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .header {
+            grid-column: 1 / -1;
+            border-bottom: 3px solid #0f172a;
+            padding-bottom: 20px;
+            margin-bottom: 10px;
+        }
+
+        .name {
+            font-family: 'Merriweather', serif;
+            font-size: 36px;
+            color: #0f172a;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .job-title {
+            font-size: 18px;
+            color: #475569;
+            margin: 5px 0 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .main-content {
+            padding-top: 10px;
+        }
+
+        .sidebar {
+            padding-top: 10px;
+            border-left: 1px solid #e2e8f0;
+            padding-left: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-family: 'Merriweather', serif;
+            font-size: 18px;
+            color: #0f172a;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .experience-item {
+            margin-bottom: 20px;
+        }
+
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .company {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1e293b;
+        }
+
+        .date {
+            font-size: 13px;
+            color: #64748b;
+            font-style: italic;
+        }
+
+        .position {
+            font-weight: 600;
+            color: #334155;
+            font-size: 15px;
+        }
+
+        .description {
+            font-size: 14px;
+            margin-top: 8px;
+            color: #334155;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .contact-list li {
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+
+        .education-item {
+            margin-bottom: 15px;
+        }
+
+        .school {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .degree {
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .grad-date {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .skill-item {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="name">{{personalInfo.fullName}}</h1>
+            <p class="job-title">{{personalInfo.jobTitle}}</p>
+        </header>
+
+        <div class="main-content">
+            {{#if personalInfo.summary}}
+            <section class="section">
+                <h2 class="section-title">Profile</h2>
+                <p style="font-size: 14px;">{{personalInfo.summary}}</p>
+            </section>
+            {{/if}}
+
+            {{#if experience.length}}
+            <section class="section">
+                <h2 class="section-title">Work Experience</h2>
+                {{#each experience}}
+                <div class="experience-item">
+                    <div class="company-header">
+                        <div class="company">{{company}}</div>
+                        <div class="date">{{startDate}} - {{endDate}}</div>
+                    </div>
+                    <div class="position">{{position}}</div>
+                    {{#if description}}
+                    <p class="description">{{description}}</p>
+                    {{/if}}
+                </div>
+                {{/each}}
+            </section>
+            {{/if}}
+        </div>
+
+        <aside class="sidebar">
+            <section class="section">
+                <h2 class="section-title">Contact</h2>
+                <ul class="contact-list">
+                    {{#if personalInfo.email}}<li>{{personalInfo.email}}</li>{{/if}}
+                    {{#if personalInfo.phone}}<li>{{personalInfo.phone}}</li>{{/if}}
+                    {{#if personalInfo.location}}<li>{{personalInfo.location}}</li>{{/if}}
+                </ul>
+            </section>
+
+            {{#if education.length}}
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                {{#each education}}
+                <div class="education-item">
+                    <div class="school">{{school}}</div>
+                    <div class="degree">{{degree}}</div>
+                    <div class="grad-date">{{graduationDate}}</div>
+                </div>
+                {{/each}}
+            </section>
+            {{/if}}
+
+            {{#if skills.length}}
+            <section class="section">
+                <h2 class="section-title">Skills</h2>
+                {{#each skills}}
+                <div class="skill-item">• {{this}}</div>
+                {{/each}}
+            </section>
+            {{/if}}
+        </aside>
+    </div>
+</body>
+
+</html>
