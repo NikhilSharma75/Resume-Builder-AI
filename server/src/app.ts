@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 5000;
 
 // CORS setup
 app.use(cors({
-  origin: ['https://resumebuilderpro-pearl.vercel.app','http://localhost:3000' ],
+  origin: ['https://resume-builder-ai-zeta-beryl.vercel.app','http://localhost:3000' ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
