@@ -538,14 +538,7 @@ export default function Home() {
 
                     <div className="container relative z-10 flex flex-col items-center text-center px-4 md:px-6">
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary/50 px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm"
-                        >
-                            <Zap size={14} className="text-primary" /> v3.0 Now Available
-                        </motion.div>
+                       
 
                         <motion.h1
                             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
